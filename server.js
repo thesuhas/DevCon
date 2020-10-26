@@ -1,9 +1,13 @@
 // This is the entry file
 // Importing express
 const express = require('express');
+const connectDB = require('./config/db');
 
 // Initialising app variable
 const app = express();
+
+// Connect DB
+connectDB();
 
 // Creating get request that send data to browser for test
 app.get('/', (req, res) => res.send('API Running')); // Send a response stating that the API is running
