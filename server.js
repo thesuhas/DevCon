@@ -9,8 +9,17 @@ const app = express();
 // Connect DB
 connectDB();
 
+// Init middleware
+app.use(express.json({extended: false}));
+
 // Creating get request that send data to browser for test
 app.get('/', (req, res) => res.send('API Running')); // Send a response stating that the API is running
+
+// Define routs
+app.use('/api/users', require('./routes/api/users')); // Makes api/users pertain to the get request in users.js
+app.use('/api/profile', require('./routes/api/profile')); // Makes api/users pertain to the get request in profile.js
+app.use('/api/auth', require('./routes/api/auth')); // Makes api/users pertain to the get request in auth.js
+app.use('/api/posts', require('./routes/api/posts')); // Makes api/users pertain to the get request in posts.js
 
 // Listening on a port
 const PORT = process.env.PORT || 5000; // Looks at environment variable called port, if not set will go to 5000 
