@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-})
+});
 
 // Takes in model name and the schema
 module.exports = User = mongoose.model('user', UserSchema);
