@@ -87,11 +87,11 @@ router.post('/', [auth,
     if (instagram) profileFields.social.instagram = instagram;
 
     try {
-        let profile = Profile.findOne({user: req.user.id});
+        let profile = await Profile.findOne({user: req.user.id});
 
         // If profile exists, update it
         if (profile) {
-            profile = await profile.findOneAndUpdate(
+            profile = await Profile.findOneAndUpdate(
                 {user: req.user.id}, 
                 {$set: profileFields},
                 {new: true});
@@ -110,5 +110,18 @@ router.post('/', [auth,
 
 });
 
+// @route GET api/profile
+// @dev get all profiles
+// @access Public
+router.get('/', async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']); // Get name and avatar of all users
+        res.json(profiles);
+        
+    } catch (err) {
+        console.err(err.message);
+        res.status(500).send("Server Error");
+    }
+})
 
 module.exports = router;
