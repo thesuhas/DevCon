@@ -122,6 +122,32 @@ router.get('/', async (req, res) => {
         console.err(err.message);
         res.status(500).send("Server Error");
     }
-})
+});
+
+// @route GET api/profile/user/:user_id : used for placeholder
+// @dev get profile by user id
+// @access Public
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        // User id comes from the URL, hence from params
+        const profile = await Profile.findOne({user: req.params.user_id}).populate('user', ['name', 'avatar']); // Get name and avatar of all users
+        
+        // If no profile
+        if (!profile)
+        {
+            return res.status(400).json({msg: 'Profile not found'});
+        }
+
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+
+        // If the type is object id
+        if (err.kind == 'ObjectId'){
+            return res.status(400).json({msg: 'Profile not found'});
+        }
+        res.status(500).send("Server Error");
+    }
+});
 
 module.exports = router;
