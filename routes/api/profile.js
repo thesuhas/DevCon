@@ -14,7 +14,7 @@ const {check, validationResult} = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const { route } = require('./users');
-const { request } = require('express');
+const { request, response } = require('express');
 
 // @route GET(request type) api/profile/me(end point) Note: api/profile gets all profiles
 // @description get current users profile
@@ -202,6 +202,28 @@ check('from', 'From date is required').not().isEmpty()]
         res.status(500).send('Server Error');
     }
 
+});
+
+// @route DELETE api/profile/experience/:exp_id
+// @dev Delete experience from profile
+// @access Private
+
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+    try{
+        const profile = await Profile.findOne({user: req.user.id});
+
+        // Get remove index
+        const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+
+        profile.experience.splice(removeIndex, 1);
+
+        await profile.save();
+        res.json(profile);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 });
 
 module.exports = router;
