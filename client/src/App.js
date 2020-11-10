@@ -6,9 +6,6 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import './App.css';
 
-{/* If only single element is being returned, no need of curly braces*/}
-{/* Fragment are ghost elements, won't show up in dom */}
-
 const App = () => (
     <Router>
       <Fragment>
