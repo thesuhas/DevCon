@@ -3,7 +3,7 @@ import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from '../actio
 const initialState = {
     // Getting the tken from local storage
     token: localStorage.getItem('token'),
-    isAuntheticated: null, // Will be set to true if user has successfully logged in
+    isAuthenticated: null, // Will be set to true if user has successfully logged in
     loading: true, // Ensures loading is done, backend request has been finished
     user: null // User will get stored here
 }
@@ -26,7 +26,7 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 ...payload,
-                isAuntheticated: true,
+                isAuthenticated: true,
                 loading: false
             }
         case AUTH_ERROR: // Does same thing as register fail which is clearing the state and deleting the token from local storage
@@ -35,7 +35,7 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 token: null,
-                isAuntheticated: false,
+                isAuthenticated: false,
                 loading: false
             }
 
