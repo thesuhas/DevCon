@@ -1,4 +1,4 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL} from '../actions/types';
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from '../actions/types';
 
 const initialState = {
     // Getting the tken from local storage
@@ -13,6 +13,14 @@ export default function(state = initialState, action){
     const {type, payload} = action;
 
     switch(type) {
+        case USER_LOADED:
+            // If user has loaded
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user:payload
+            }
         case REGISTER_SUCCESS: // User must get logged in
             localStorage.setItem('token', payload.token); // Stores token so that user can log in, first argument is name and second is value
             return {
@@ -21,6 +29,7 @@ export default function(state = initialState, action){
                 isAuntheticated: true,
                 loading: false
             }
+        case AUTH_ERROR: // Does same thing as register fail which is clearing the state and deleting the token from local storage
         case REGISTER_FAIL: // Remove local storage of token
             localStorage.removeItem('token');
             return {
