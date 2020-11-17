@@ -1,4 +1,4 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL} from '../actions/types';
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT} from '../actions/types';
 
 const initialState = {
     // Getting the tken from local storage
@@ -30,6 +30,7 @@ export default function(state = initialState, action){
                 isAuthenticated: true,
                 loading: false
             }
+        case LOGOUT:
         case LOGIN_FAIL:
         case AUTH_ERROR: // Does same thing as register fail which is clearing the state and deleting the token from local storage
         case REGISTER_FAIL: // Remove local storage of token
