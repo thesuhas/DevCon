@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR } from "../actions/types";
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types";
 
 // Creating initial state
 const initialState = {
@@ -24,6 +24,13 @@ export default function (state=initialState, action) {
                 ...state,
                 error: payload, // Sending payload as error as in actions file, if error occurs, payload contains error details
                 loading:false
+            }
+        case CLEAR_PROFILE:
+            return {
+                ...state,
+                profile: null,
+                repos: [],
+                loading: false
             }
         default:
             return state;
