@@ -11,7 +11,7 @@ import { DashboardActions } from './DashboardActions';
 const Dashboard = ({ getCurrentProfile, auth: {user}, profile: {profile, loading}, deleteAccount}) => {
     useEffect(() => {
         getCurrentProfile();
-    }, []);
+    }, [getCurrentProfile]); // Adding getCurrentProfile as a dependency
     // user && usern.name checks if user exists and then displays it
     return (
         loading && profile === null ? <Spinner/> : <Fragment>

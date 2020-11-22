@@ -40,7 +40,7 @@ const EditProfile = ({ createProfile, history, getCurrentProfile, profile: { pro
             instagram: loading || !profile.social ? '' : profile.social.instagram
         });
 
-    }, [loading]); // Loading added so that it loads only while loading and not at every refresh
+    }, [loading, getCurrentProfile]); // Loading added so that it loads only while loading and not at every refresh
 
     // Destructuring
     const {
