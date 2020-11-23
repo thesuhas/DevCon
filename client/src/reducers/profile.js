@@ -36,7 +36,8 @@ export default function (state=initialState, action) {
             return {
                 ...state,
                 error: payload, // Sending payload as error as in actions file, if error occurs, payload contains error details
-                loading:false
+                loading:false,
+                profile: null
             }
         case CLEAR_PROFILE:
             return {
