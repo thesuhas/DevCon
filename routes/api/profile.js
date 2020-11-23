@@ -15,6 +15,8 @@ const request = require('request');
 
 // Getting config
 const config = require('config');
+// Normalize url
+const normalize = require('normalize-url');
 
 // Getting the model
 const Profile = require('../../models/Profile');
@@ -77,7 +79,7 @@ router.post('/', [auth,
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
+    if (website) profileFields.website = normalize(website, { forceHttps:true});
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
@@ -88,11 +90,11 @@ router.post('/', [auth,
 
     // Build Social Object
     profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
-    if (twitter) profileFields.social.twitter = twitter;
-    if (facebook) profileFields.social.facebook = facebook;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    if (instagram) profileFields.social.instagram = instagram;
+    if (youtube) profileFields.social.youtube = normalize(youtube, { forceHttps:true});
+    if (twitter) profileFields.social.twitter = normalize(twitter, { forceHttps:true});
+    if (facebook) profileFields.social.facebook = normalize(facebook, { forceHttps:true});
+    if (linkedin) profileFields.social.linkedin = normalize(linkedin, { forceHttps:true});
+    if (instagram) profileFields.social.instagram = normalize(instagram, { forceHttps:true});
 
     try {
         let profile = await Profile.findOne({user: req.user.id});
