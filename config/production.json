@@ -1,0 +1,7 @@
+{
+    "mongoURI":"mongodb+srv://thesuhas:Suhas1803@devconnector.ps3wk.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "454f7644ad886fb8ece6",
+    "githubSecret": "98f63f87386aeb65692724ffb1b354e3a0cffee7",
+    "githubToken": "12d1d572c206a9649157c477c9eb516a6a23b935"
+}
