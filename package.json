@@ -1,5 +1,5 @@
 {
-  "name": "devconnector",
+  "name": "devcon",
   "version": "1.0.0",
   "description": "Social network for developers",
   "main": "server.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thesuhas/DevConnector.git"
+    "url": "git+https://github.com/thesuhas/DevCon.git"
   },
   "author": "Suhas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thesuhas/DevConnector/issues"
+    "url": "https://github.com/thesuhas/DevCon/issues"
   },
-  "homepage": "https://github.com/thesuhas/DevConnector#readme",
+  "homepage": "https://github.com/thesuhas/DevCon#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.2",
